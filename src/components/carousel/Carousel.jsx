@@ -1,6 +1,6 @@
 import { useRef } from "preact/hooks";
 import { useStore } from "@nanostores/preact";
-import { theme } from "../stores/theme";
+import { theme } from "../../stores/theme";
 import "../css/carousel.css";
 const Carousel = ({ children }) => {
   const $theme = useStore(theme);

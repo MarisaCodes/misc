@@ -9,7 +9,11 @@ const Banner = () => {
         <div>
           <figure className="is-3by1 image">
             <img
-              src="/misc-logos__transparent.png"
+              src={
+                $theme.color.includes("black")
+                  ? "/misc-logos__white.png"
+                  : "/misc-logos__black.png"
+              }
               style={{ objectFit: "scale-down" }}
               alt="misc website logo"
             />

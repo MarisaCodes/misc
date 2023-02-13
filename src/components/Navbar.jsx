@@ -16,7 +16,11 @@ const Navbar = () => {
       <div className="navbar-brand is-align-items-center">
         <a href="/" className="navbar-item p-0">
           <img
-            src="/misc-logos__black.png"
+            src={
+              $theme.color.includes("black")
+                ? "/misc-logos__white.png"
+                : "/misc-logos__black.png"
+            }
             alt="navbar logo"
             style={{ maxHeight: "none", height: "80px" }}
           />
@@ -51,6 +55,9 @@ const Navbar = () => {
               <a href="/search" className="navbar-item">
                 search index
               </a>
+              <a href="/anime" className="navbar-item">
+                Anime
+              </a>
               <a
                 className="navbar-item random"
                 onClick={() => theme.set(randomize(themeList.length - 1, 0))}
@@ -61,15 +68,17 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-end">
-          <a href="/venting" className="navbar-item">
-            venting
-          </a>
           <a href="/misc" className="navbar-item">
             misc.
           </a>
-          <a href="#" className="navbar-item">
-            Join the Discod server
-          </a>
+          <div className="navbar-item">
+            <a
+              href="#"
+              className={"button is-aligned-self-center " + $theme.color}
+            >
+              Join the Discod server
+            </a>
+          </div>
         </div>
       </div>
     </nav>
