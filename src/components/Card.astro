@@ -1,0 +1,50 @@
+---
+const { thumbnail, slug, href } = Astro.props;
+---
+
+<style>
+  .custom-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  /* .card-hover {
+    transition: transform 0.4s ease;
+  }
+  .card-hover:hover {
+    transform: scale(1.03);
+  } */
+  .custom-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card {
+    user-select: none;
+  }
+</style>
+<div class="card card-hover">
+  {
+    thumbnail && (
+      <div class="card-image">
+        <figure class="image is-3by2">
+          <img src={thumbnail} alt="tsukihi phoenix" style="object-fit:cover" />
+        </figure>
+      </div>
+    )
+  }
+  <div class="card-content">
+    <p class="title has-text-weight-bold is-size-5-mobile">{slug}</p>
+    <div class={"custom-content is-size-6 " + (thumbnail ? "" : "mt-6")}>
+      <slot />
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a
+      href={href}
+      class="card-footer-item button is-radiusless is-link is-light">view</a
+    >
+  </footer>
+</div>

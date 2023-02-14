@@ -1,8 +1,8 @@
 import { atom } from "nanostores";
 
 export const theme = atom({
-  color: "is-dark",
-  bg: "has-background-dark",
-  hex: "#363636",
-  text: "whitesmoke",
+  color: "is-link",
+  bg: "has-background-link",
+  hex: "#485fc7",
+  text: "rgba(0, 0, 0, 0.7)",
 });

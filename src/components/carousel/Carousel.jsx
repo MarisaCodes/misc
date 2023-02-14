@@ -1,7 +1,7 @@
 import { useRef } from "preact/hooks";
 import { useStore } from "@nanostores/preact";
 import { theme } from "../../stores/theme";
-import "../css/carousel.css";
+import "../../css/carousel.css";
 const Carousel = ({ children }) => {
   const $theme = useStore(theme);
   const scrollBarStyles = `.thumbBg::-webkit-scrollbar-thumb {
@@ -15,9 +15,13 @@ const Carousel = ({ children }) => {
       carouselRef.current.scrollLeft -= 1000;
     }
   };
+  const carouselBg =
+    $theme.color.includes("dark") || $theme.color.includes("black")
+      ? "has-background-light"
+      : $theme.bg + "-light";
   return (
     <div className="carousel-wrapper">
-      <div className="carousel thumbBg" ref={carouselRef}>
+      <div className={"carousel thumbBg " + carouselBg} ref={carouselRef}>
         <style>{scrollBarStyles}</style>
         <button
           className={"button left p-1 is-hidden-touch " + $theme.color}

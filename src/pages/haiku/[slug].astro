@@ -1,0 +1,24 @@
+---
+export const getStaticPaths = async () => {
+  const haikus = await Astro.glob("../../content/haiku/*.md");
+  return haikus.map((haiku) => {
+    const { slug } = haiku.frontmatter;
+
+    const { Content } = haiku;
+    const modifiedSlug = slug.split(" ").join("-");
+    return {
+      params: { slug: modifiedSlug },
+      props: { slug, Content },
+    };
+  });
+};
+
+const { Content, slug } = Astro.props;
+---
+
+<article class="section">
+  <div class="container">
+    <h1 class="title">{slug}</h1>
+    <Content />
+  </div>
+</article>
