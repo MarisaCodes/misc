@@ -1,0 +1,60 @@
+---
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import CustomLink from "../../components/CustomLink";
+import Message from "../../components/Message";
+import Home from "../../components/page-comps/Home";
+import PostContent from "../../components/PostContent.astro";
+import Layout from "../../layouts/Layout.astro";
+const stories = await Astro.glob("../../content/short-stories/*.md");
+---
+
+<style>
+  .custom {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 10;
+    overflow: hidden;
+  }
+  .search-div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+</style>
+<Layout>
+  <Home client:load>
+    <div class="p-3">
+      <Breadcrumbs>
+        <li><a href="/">Home</a></li>
+        <li class="is-active"><a href="/short-stories">Short stories</a></li>
+      </Breadcrumbs>
+      <div class="search-div" style="max-width: fit-content;">
+        <input
+          type="search"
+          class="input"
+          id="search-anime-input"
+          placeholder="Filter with genre..."
+        />
+        <span class="tag is-info is-medium">Filter using genre</span>
+      </div>
+      {
+        stories.map(({ frontmatter, Content }) => {
+          const { title, href } = frontmatter;
+          return (
+            <Message bodyBg={true} client:load header={title}>
+              <PostContent>
+                <div class="custom">
+                  <Content />
+                </div>
+                <div class="has-text-centered">
+                  <CustomLink href={href} text="Read more..." client:load />
+                </div>
+              </PostContent>
+            </Message>
+          );
+        })
+      }
+    </div>
+  </Home>
+</Layout>

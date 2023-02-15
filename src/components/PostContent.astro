@@ -1,0 +1,42 @@
+---
+import Breadcrumbs from "./Breadcrumbs.astro";
+import { breadcrumbs } from "../funcs/crumbs";
+const { title, thumbnail, href } = Astro.props;
+---
+
+<div>
+  {
+    href && (
+      <Breadcrumbs>
+        {breadcrumbs(href, title).map((crumbObj) => {
+          return (
+            <li class={crumbObj.active ? "is-active" : ""}>
+              <a href={crumbObj.link}>{crumbObj.path}</a>
+            </li>
+          );
+        })}
+      </Breadcrumbs>
+    )
+  }
+  <div class="container">
+    {
+      title && (
+        <p class="is-block has-text-weight-bold is-size-3-tablet is-size-5-mobile mb-6">
+          {title}
+        </p>
+      )
+    }
+    {
+      thumbnail && (
+        <div class="my-6">
+          <figure class="image mb-5 is-3by1">
+            <img src={thumbnail} style="object-fit: scale-down;" alt="" />
+          </figure>
+        </div>
+      )
+    }
+    <div class="content is-size-5-tablet is-size-6-mobile">
+      <slot />
+    </div>
+  </div>
+</div>

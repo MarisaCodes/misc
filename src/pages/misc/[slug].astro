@@ -1,21 +1,21 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import PostContent from "../../components/PostContent.astro";
+import { staticPathsSlugs } from "../../funcs/staticPathsSlugs";
 import PostLayout from "../../layouts/PostLayout.astro";
 
 export const getStaticPaths = async () => {
-  const miscPosts = await Astro.glob("../../content/misc/*.md");
-  return miscPosts.map((misc) => {
-    const { slug, thumbnail } = misc.frontmatter;
-    const { Content } = misc;
-    const modifiedSlug = slug.split(" ").join("-");
-    return {
-      params: { slug: modifiedSlug },
-      props: { slug, Content, thumbnail },
-    };
-  });
+  const posts = await Astro.glob("../../content/misc/*.md");
+  return staticPathsSlugs(posts);
 };
 
-const { slug, Content, thumbnail } = Astro.props;
+const { Content, thumbnail, href, title } = Astro.props;
 ---
 
-<PostLayout slug={slug} Content={Content} thumbnail={thumbnail} />
+<PostLayout>
+  <article class="section">
+    <PostContent href={href} title={title} thumbnail={thumbnail}>
+      <Content />
+    </PostContent>
+  </article>
+  <hr class="navbar-separator my-0" />
+</PostLayout>

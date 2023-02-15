@@ -1,6 +1,7 @@
 ---
 href: /haiku/Nature
 slug: Nature
+title: Nature
 ---
 
 Sweet and citrus dance/

@@ -1,24 +1,21 @@
 ---
+import PostContent from "../../components/PostContent.astro";
+import { staticPathsSlugs } from "../../funcs/staticPathsSlugs";
+import PostLayout from "../../layouts/PostLayout.astro";
+
 export const getStaticPaths = async () => {
   const haikus = await Astro.glob("../../content/haiku/*.md");
-  return haikus.map((haiku) => {
-    const { slug } = haiku.frontmatter;
-
-    const { Content } = haiku;
-    const modifiedSlug = slug.split(" ").join("-");
-    return {
-      params: { slug: modifiedSlug },
-      props: { slug, Content },
-    };
-  });
+  return staticPathsSlugs(haikus);
 };
 
-const { Content, slug } = Astro.props;
+const { Content, title, href } = Astro.props;
 ---
 
-<article class="section">
-  <div class="container">
-    <h1 class="title">{slug}</h1>
-    <Content />
-  </div>
-</article>
+<PostLayout>
+  <article class="section">
+    <PostContent title={title} href={href}>
+      <Content />
+    </PostContent>
+  </article>
+  <hr class="navbar-separator my-0" />
+</PostLayout>

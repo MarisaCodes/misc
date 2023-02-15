@@ -1,5 +1,5 @@
 ---
-const { thumbnail, slug, href } = Astro.props;
+const { thumbnail, title, href, Content } = Astro.props;
 ---
 
 <style>
@@ -9,15 +9,15 @@ const { thumbnail, slug, href } = Astro.props;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  /* .card-hover {
+  .card-hover {
     transition: transform 0.4s ease;
   }
   .card-hover:hover {
     transform: scale(1.03);
-  } */
+  }
   .custom-title {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -36,9 +36,13 @@ const { thumbnail, slug, href } = Astro.props;
     )
   }
   <div class="card-content">
-    <p class="title has-text-weight-bold is-size-5-mobile">{slug}</p>
+    <p
+      class="custom-title has-text-weight-bold is-size-4-tablet is-size-5-mobile"
+    >
+      {title}
+    </p>
     <div class={"custom-content is-size-6 " + (thumbnail ? "" : "mt-6")}>
-      <slot />
+      <Content />
     </div>
   </div>
   <footer class="card-footer">

@@ -1,0 +1,46 @@
+---
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import CustomLink from "../../components/CustomLink";
+import Message from "../../components/Message";
+import Home from "../../components/page-comps/Home";
+import PostContent from "../../components/PostContent.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const haikus = await Astro.glob("../../content/haiku/*.md");
+---
+
+<style>
+  .custom {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+</style>
+<Layout>
+  <Home client:load>
+    <div class="p-3">
+      <Breadcrumbs>
+        <li><a href="/">Home</a></li>
+        <li class="is-active"><a href="/haiku">Haiku</a></li>
+      </Breadcrumbs>
+      {
+        haikus.map(({ frontmatter, Content }) => {
+          const { title, href } = frontmatter;
+          return (
+            <Message bodyBg={true} header={title} client:load>
+              <PostContent>
+                <div class="custom">
+                  <Content />
+                </div>
+                <div class="has-text-centered">
+                  <CustomLink href={href} text="Read more..." client:load />
+                </div>
+              </PostContent>
+            </Message>
+          );
+        })
+      }
+    </div>
+  </Home>
+</Layout>

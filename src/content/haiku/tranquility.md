@@ -1,6 +1,7 @@
 ---
 href: /haiku/A-tranquil-Spirit
-slug: A tranquil Spirit
+slug: A-tranquil-Spirit
+title: A tranquil Spirit
 ---
 
 A tranquil spirit/

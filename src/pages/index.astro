@@ -10,24 +10,49 @@ import Layout from "../layouts/Layout.astro";
 const haikus = await Astro.glob("../content/haiku/*.md");
 const miscPosts = await Astro.glob("../content/misc/*.md");
 const stories = await Astro.glob("../content/short-stories/*.md");
+const animes = await Astro.glob("../content/anime/*.md");
 ---
 
 <Layout>
-  <Banner client:load />
-  <hr class="navbar-separator my-0" />
   <Home client:load>
-    <Message client:load header="Check out haikus!">
+    <Banner client:load />
+    <Message
+      hr={false}
+      bodyBg={false}
+      client:load
+      header="Checkout anime posts"
+    >
+      <Carousel client:load>
+        {
+          animes.map((anime) => {
+            const { title, href, thumbnail } = anime.frontmatter;
+            const { Content } = anime;
+
+            return (
+              <CarouselCell>
+                <Card
+                  Content={Content}
+                  title={title}
+                  href={href}
+                  thumbnail={thumbnail}
+                />
+              </CarouselCell>
+            );
+          })
+        }
+      </Carousel>
+    </Message>
+
+    <Message hr={false} bodyBg={false} client:load header="Check out haikus!">
       <Carousel client:load>
         {
           haikus.map((haiku) => {
-            const { slug, href } = haiku.frontmatter;
+            const { title, href } = haiku.frontmatter;
             const { Content } = haiku;
 
             return (
               <CarouselCell>
-                <Card slug={slug} href={href}>
-                  <Content />
-                </Card>
+                <Card title={title} href={href} Content={Content} />
               </CarouselCell>
             );
           })
@@ -35,18 +60,25 @@ const stories = await Astro.glob("../content/short-stories/*.md");
       </Carousel>
     </Message>
 
-    <Message client:load header="Checkout misc discussions">
+    <Message
+      hr={false}
+      bodyBg={false}
+      client:load
+      header="Checkout misc discussions"
+    >
       <Carousel client:load>
         {
-          miscPosts.map((misc) => {
-            const { slug, thumbnail, href } = misc.frontmatter;
-            const { Content } = misc;
+          miscPosts.map(({ frontmatter, Content }) => {
+            const { thumbnail, href, title } = frontmatter;
 
             return (
               <CarouselCell>
-                <Card thumbnail={thumbnail} href={href} slug={slug}>
-                  <Content />
-                </Card>
+                <Card
+                  title={title}
+                  href={href}
+                  thumbnail={thumbnail}
+                  Content={Content}
+                />
               </CarouselCell>
             );
           })
@@ -54,21 +86,37 @@ const stories = await Astro.glob("../content/short-stories/*.md");
       </Carousel>
     </Message>
 
-    <Message client:load header="Checkout short stories">
+    <Message
+      hr={false}
+      bodyBg={false}
+      client:load
+      header="Checkout short stories"
+    >
       <Carousel client:load>
         {
           stories.map(({ frontmatter, Content }) => {
-            const { slug, href } = frontmatter;
+            const { title, href } = frontmatter;
             return (
               <CarouselCell>
-                <Card href={href} slug={slug}>
-                  <Content />
-                </Card>
+                <Card title={title} href={href} Content={Content} />
               </CarouselCell>
             );
           })
         }
       </Carousel>
     </Message>
+    <div class="section">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi est maiores
+      ullam accusamus voluptate iusto, soluta nostrum optio officia. Laborum
+      voluptates numquam beatae, voluptate suscipit deserunt dolor eos nam
+      voluptatem culpa, nostrum earum reprehenderit delectus minus quasi quia
+      cum explicabo, et excepturi. Et voluptate in error temporibus facere ex
+      molestiae aspernatur, cumque, itaque voluptatum autem? Autem unde animi
+      cum quo minima deserunt pariatur reprehenderit incidunt odio? Optio
+      doloribus eligendi quam molestiae! Asperiores minus soluta necessitatibus
+      corporis dolorum quia cumque eius vero non at cupiditate excepturi harum
+      est, sunt dignissimos perspiciatis assumenda consectetur ab ex quae fugit
+      sequi laboriosam ratione dolore?
+    </div>
   </Home>
 </Layout>

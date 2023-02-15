@@ -1,12 +1,11 @@
 ---
 import Post from "../components/Post";
+import PostContent from "../components/PostContent.astro";
 import Layout from "./Layout.astro";
-const { slug, Content, thumbnail } = Astro.props;
 ---
 
 <Layout>
-  <Post slug={slug} thumbnail={thumbnail} client:load>
-    <Content />
+  <Post client:load>
+    <slot />
   </Post>
-  <hr class="navbar-separator my-0" />
 </Layout>

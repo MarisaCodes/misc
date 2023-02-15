@@ -1,6 +1,7 @@
 ---
 href: /haiku/Haiku-is-tricky
-slug: Haiku is tricky
+slug: Haiku-is-tricky
+title: Haiku is tricky
 ---
 
 Futile ink scribbles/

@@ -3,10 +3,11 @@ import { persistentAtom } from "@nanostores/persistent";
 export const theme = persistentAtom(
   "theme",
   {
-    color: "is-link",
-    bg: "has-background-link",
-    hex: "#485fc7",
-    text: "rgba(0, 0, 0, 0.7)",
+    color: "is-dark",
+    bg: "has-background-dark",
+    hex: "#363636",
+    secondaryBg: "has-secondary-dark-bg",
+    text: "whitesmoke",
   },
   {
     encode: JSON.stringify,

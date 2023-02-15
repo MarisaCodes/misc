@@ -39,6 +39,7 @@ export const themeList = [
     color: "is-dark",
     bg: "has-background-dark",
     hex: "#363636",
+    secondaryBg: "has-secondary-dark-bg",
     text: "whitesmoke",
   },
   {
@@ -50,6 +51,7 @@ export const themeList = [
   {
     color: "is-black",
     bg: "has-background-black",
+    secondaryBg: "has-secondary-black-bg",
     hex: "#0a0a0a",
     text: "whitesmoke",
   },

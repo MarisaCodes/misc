@@ -1,29 +1,23 @@
 ---
+import PostContent from "../../components/PostContent.astro";
+import { staticPathsSlugs } from "../../funcs/staticPathsSlugs";
 import Layout from "../../layouts/Layout.astro";
+import PostLayout from "../../layouts/PostLayout.astro";
 
 export const getStaticPaths = async () => {
   const stories = await Astro.glob("../../content/short-stories/*.md");
 
-  return stories.map((story) => {
-    const { slug } = story.frontmatter;
-
-    const { Content } = story;
-    const modifiedSlug = slug.split(" ").join("-");
-    return {
-      params: { slug: modifiedSlug },
-      props: { slug, Content },
-    };
-  });
+  return staticPathsSlugs(stories);
 };
 
-const { slug, Content } = Astro.props;
+const { title, Content, href } = Astro.props;
 ---
 
-<Layout>
-  <div class="section">
-    <div class="container">
-      <p class="title is-size-3-tablet is-size-5-mobile">{slug}</p>
+<PostLayout>
+  <article class="section">
+    <PostContent href={href} title={title}>
       <Content />
-    </div>
-  </div>
-</Layout>
+    </PostContent>
+  </article>
+  <hr class="navbar-separator my-0" />
+</PostLayout>
