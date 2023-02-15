@@ -58,9 +58,6 @@ const Navbar = () => {
               <a href="/anime" className="navbar-item">
                 Anime
               </a>
-              <a href="/search" className="navbar-item">
-                search index
-              </a>
               <a
                 className="navbar-item random"
                 onClick={() => theme.set(randomize(themeList.length - 1, 0))}

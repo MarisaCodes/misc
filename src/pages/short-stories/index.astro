@@ -1,9 +1,7 @@
 ---
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
-import CustomLink from "../../components/CustomLink";
-import Message from "../../components/Message";
 import Home from "../../components/page-comps/Home";
-import PostContent from "../../components/PostContent.astro";
+import PostCards from "../../components/PostCards";
 import Layout from "../../layouts/Layout.astro";
 const stories = await Astro.glob("../../content/short-stories/*.md");
 ---
@@ -24,7 +22,7 @@ const stories = await Astro.glob("../../content/short-stories/*.md");
 </style>
 <Layout>
   <Home client:load>
-    <div class="p-3">
+    <div class="section">
       <Breadcrumbs>
         <li><a href="/">Home</a></li>
         <li class="is-active"><a href="/short-stories">Short stories</a></li>
@@ -33,6 +31,7 @@ const stories = await Astro.glob("../../content/short-stories/*.md");
         <input
           type="search"
           class="input"
+          autocomplete="off"
           id="search-anime-input"
           placeholder="Filter with genre..."
         />
@@ -42,16 +41,9 @@ const stories = await Astro.glob("../../content/short-stories/*.md");
         stories.map(({ frontmatter, Content }) => {
           const { title, href } = frontmatter;
           return (
-            <Message bodyBg={true} client:load header={title}>
-              <PostContent>
-                <div class="custom">
-                  <Content />
-                </div>
-                <div class="has-text-centered">
-                  <CustomLink href={href} text="Read more..." client:load />
-                </div>
-              </PostContent>
-            </Message>
+            <PostCards title={title} href={href} client:load>
+              <Content />
+            </PostCards>
           );
         })
       }

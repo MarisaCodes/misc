@@ -15,23 +15,33 @@ const Carousel = ({ children }) => {
       carouselRef.current.scrollLeft -= 1000;
     }
   };
-  const carouselBg =
-    $theme.color.includes("dark") || $theme.color.includes("black")
-      ? "has-background-light"
-      : $theme.bg + "-light";
+  const getButtonTheme = (themeColor) => {
+    switch (themeColor) {
+      case "is-dark":
+        return "is-light";
+      case "is-black":
+        return "is-light";
+      default:
+        return themeColor;
+    }
+  };
   return (
     <div className="carousel-wrapper">
-      <div className={"carousel thumbBg " + carouselBg} ref={carouselRef}>
+      <div className={"carousel thumbBg "} ref={carouselRef}>
         <style>{scrollBarStyles}</style>
         <button
-          className={"button left p-1 is-hidden-touch " + $theme.color}
+          className={
+            "button left p-1 is-hidden-mobile " + getButtonTheme($theme.color)
+          }
           onClick={() => handleClick("left")}
         >
           <p className="is-size-3 has-text-weight-bold">{"\u25C3"}</p>
         </button>
         {children}
         <button
-          className={"button right p-1 is-hidden-touch " + $theme.color}
+          className={
+            "button right p-1 is-hidden-mobile " + getButtonTheme($theme.color)
+          }
           onClick={() => handleClick("right")}
         >
           <p className="is-size-3 has-text-weight-bold">{"\u25B9"}</p>

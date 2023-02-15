@@ -4,12 +4,16 @@
 .carousel {
   display: flex;
   gap: 20px;
-  padding-bottom: 20px;
+  padding: 25px;
   overflow-x: scroll;
   overflow-y: hidden;
   scroll-behavior: smooth;
 }
-
+@media only screen and (max-width: 320px) {
+  .carousel {
+    padding: 10px;
+  }
+}
 .carousel::-webkit-scrollbar {
   width: 5px;
   height: 8px;

@@ -1,9 +1,7 @@
 ---
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
-import CustomLink from "../../components/CustomLink";
-import Message from "../../components/Message";
 import Home from "../../components/page-comps/Home";
-import PostContent from "../../components/PostContent.astro";
+import PostCards from "../../components/PostCards";
 import Layout from "../../layouts/Layout.astro";
 const animes = await Astro.glob("../../content/anime/*.md");
 ---
@@ -25,7 +23,7 @@ const animes = await Astro.glob("../../content/anime/*.md");
 </style>
 <Layout>
   <Home client:load>
-    <div class="p-3">
+    <div class="section">
       <Breadcrumbs>
         <li><a href="/">Home</a></li>
         <li class="is-active"><a href="/anime">anime</a></li>
@@ -34,39 +32,36 @@ const animes = await Astro.glob("../../content/anime/*.md");
         <input
           type="search"
           class="input"
+          autocomplete="off"
           id="search-anime-input"
           placeholder="Filter with keywords..."
         />
-        <span class="tag is-info is-medium"
-          >Filter using anime related keywords</span
-        >
+        <span class="tag is-info is-medium">Filter using anime keywords</span>
       </div>
+      {
+        animes.map(({ frontmatter, Content }) => {
+          const { title, thumbnail, href } = frontmatter;
+          return (
+            <div class="anime">
+              <PostCards
+                title={title}
+                href={href}
+                thumbnail={thumbnail}
+                client:load
+              >
+                <Content />
+              </PostCards>
+            </div>
+          );
+        })
+      }
     </div>
-    {
-      animes.map(({ frontmatter, Content }) => {
-        const { title, thumbnail, href } = frontmatter;
-        return (
-          <div class="p-3">
-            <Message bodyBg={true} client:load header={title}>
-              <PostContent thumbnail={thumbnail}>
-                <div class="custom">
-                  <Content />
-                </div>
-                <div class="has-text-centered">
-                  <CustomLink href={href} text="Read more..." client:load />
-                </div>
-              </PostContent>
-            </Message>
-          </div>
-        );
-      })
-    }
   </Home>
 </Layout>
 
 <script>
   const el = {
-    messages: document.querySelectorAll(".message"),
+    animes: document.querySelectorAll(".anime"),
     searchInput: document.querySelector(
       "#search-anime-input"
     ) as HTMLInputElement,
@@ -76,16 +71,16 @@ const animes = await Astro.glob("../../content/anime/*.md");
     const val = el.searchInput.value.toLocaleLowerCase();
     console.log(val);
     if (!val) {
-      el.messages.forEach((message) => {
-        message.classList.remove("is-hidden");
+      el.animes.forEach((anime) => {
+        anime.classList.remove("is-hidden");
       });
     } else {
-      el.messages.forEach((message) => {
-        const contents = message.textContent;
+      el.animes.forEach((anime) => {
+        const contents = anime.textContent;
         if (contents.toLocaleLowerCase().includes(val)) {
-          message.classList.remove("is-hidden");
+          anime.classList.remove("is-hidden");
         } else {
-          message.classList.add("is-hidden");
+          anime.classList.add("is-hidden");
         }
       });
     }

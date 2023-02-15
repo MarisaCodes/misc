@@ -1,6 +1,6 @@
 ---
 import Banner from "../components/Banner";
-import Card from "../components/Card.astro";
+import Card from "../components/Card.jsx";
 import Carousel from "../components/carousel/Carousel";
 import CarouselCell from "../components/carousel/CarouselCell.astro";
 import Message from "../components/Message";
@@ -16,12 +16,7 @@ const animes = await Astro.glob("../content/anime/*.md");
 <Layout>
   <Home client:load>
     <Banner client:load />
-    <Message
-      hr={false}
-      bodyBg={false}
-      client:load
-      header="Checkout anime posts"
-    >
+    <Message client:load header="Checkout anime posts">
       <Carousel client:load>
         {
           animes.map((anime) => {
@@ -31,11 +26,13 @@ const animes = await Astro.glob("../content/anime/*.md");
             return (
               <CarouselCell>
                 <Card
-                  Content={Content}
                   title={title}
                   href={href}
                   thumbnail={thumbnail}
-                />
+                  client:load
+                >
+                  <Content />
+                </Card>
               </CarouselCell>
             );
           })
@@ -43,7 +40,7 @@ const animes = await Astro.glob("../content/anime/*.md");
       </Carousel>
     </Message>
 
-    <Message hr={false} bodyBg={false} client:load header="Check out haikus!">
+    <Message client:load header="Check out haikus!">
       <Carousel client:load>
         {
           haikus.map((haiku) => {
@@ -52,7 +49,9 @@ const animes = await Astro.glob("../content/anime/*.md");
 
             return (
               <CarouselCell>
-                <Card title={title} href={href} Content={Content} />
+                <Card title={title} href={href} client:load>
+                  <Content />
+                </Card>
               </CarouselCell>
             );
           })
@@ -60,12 +59,7 @@ const animes = await Astro.glob("../content/anime/*.md");
       </Carousel>
     </Message>
 
-    <Message
-      hr={false}
-      bodyBg={false}
-      client:load
-      header="Checkout misc discussions"
-    >
+    <Message client:load header="Checkout misc discussions">
       <Carousel client:load>
         {
           miscPosts.map(({ frontmatter, Content }) => {
@@ -77,8 +71,10 @@ const animes = await Astro.glob("../content/anime/*.md");
                   title={title}
                   href={href}
                   thumbnail={thumbnail}
-                  Content={Content}
-                />
+                  client:load
+                >
+                  <Content />
+                </Card>
               </CarouselCell>
             );
           })
@@ -86,19 +82,16 @@ const animes = await Astro.glob("../content/anime/*.md");
       </Carousel>
     </Message>
 
-    <Message
-      hr={false}
-      bodyBg={false}
-      client:load
-      header="Checkout short stories"
-    >
+    <Message client:load header="Checkout short stories">
       <Carousel client:load>
         {
           stories.map(({ frontmatter, Content }) => {
             const { title, href } = frontmatter;
             return (
               <CarouselCell>
-                <Card title={title} href={href} Content={Content} />
+                <Card title={title} href={href} client:load>
+                  <Content />
+                </Card>
               </CarouselCell>
             );
           })

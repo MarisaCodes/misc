@@ -1,0 +1,81 @@
+---
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import Home from "../../components/page-comps/Home";
+import PostCards from "../../components/PostCards";
+import Layout from "../../layouts/Layout.astro";
+const miscs = await Astro.glob("../../content/misc/*.md");
+---
+
+<style>
+  .search-div {
+    display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+</style>
+<Layout>
+  <Home client:load>
+    <div class="section">
+      <Breadcrumbs>
+        <li><a href="/">Home</a></li>
+        <li class="is-active"><a href="/misc">misc</a></li>
+      </Breadcrumbs>
+      <div class="search-div" style="max-width: fit-content;">
+        <input
+          type="search"
+          class="input"
+          autocomplete="off"
+          id="search-anime-input"
+          placeholder="Filter with keywords..."
+        />
+        <span class="tag is-info is-medium">Filter posts by word search</span>
+      </div>
+      {
+        miscs.map(({ frontmatter, Content }) => {
+          const { title, href, thumbnail } = frontmatter;
+          return (
+            <div class="miscs">
+              <PostCards
+                title={title}
+                href={href}
+                thumbnail={thumbnail}
+                client:load
+              >
+                <Content />
+              </PostCards>
+            </div>
+          );
+        })
+      }
+    </div>
+  </Home>
+</Layout>
+<script>
+  const el = {
+    miscs: document.querySelectorAll(".miscs"),
+    searchInput: document.querySelector(
+      "#search-anime-input"
+    ) as HTMLInputElement,
+  };
+
+  el.searchInput.addEventListener("input", () => {
+    const val = el.searchInput.value.toLocaleLowerCase();
+    console.log(val);
+    if (!val) {
+      el.miscs.forEach((misc) => {
+        misc.classList.remove("is-hidden");
+      });
+    } else {
+      el.miscs.forEach((misc) => {
+        const contents = misc.textContent;
+        if (contents.toLocaleLowerCase().includes(val)) {
+          misc.classList.remove("is-hidden");
+        } else {
+          misc.classList.add("is-hidden");
+        }
+      });
+    }
+  });
+</script>
