@@ -8,6 +8,8 @@ import Home from "../components/page-comps/Home";
 import Layout from "../layouts/Layout.astro";
 
 const haikus = await Astro.glob("../content/haiku/*.md");
+const miscPosts = await Astro.glob("../content/misc/*.md");
+const stories = await Astro.glob("../content/short-stories/*.md");
 ---
 
 <Layout>
@@ -24,6 +26,42 @@ const haikus = await Astro.glob("../content/haiku/*.md");
             return (
               <CarouselCell>
                 <Card slug={slug} href={href}>
+                  <Content />
+                </Card>
+              </CarouselCell>
+            );
+          })
+        }
+      </Carousel>
+    </Message>
+
+    <Message client:load header="Checkout misc discussions">
+      <Carousel client:load>
+        {
+          miscPosts.map((misc) => {
+            const { slug, thumbnail, href } = misc.frontmatter;
+            const { Content } = misc;
+
+            return (
+              <CarouselCell>
+                <Card thumbnail={thumbnail} href={href} slug={slug}>
+                  <Content />
+                </Card>
+              </CarouselCell>
+            );
+          })
+        }
+      </Carousel>
+    </Message>
+
+    <Message client:load header="Checkout short stories">
+      <Carousel client:load>
+        {
+          stories.map(({ frontmatter, Content }) => {
+            const { slug, href } = frontmatter;
+            return (
+              <CarouselCell>
+                <Card href={href} slug={slug}>
                   <Content />
                 </Card>
               </CarouselCell>

@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PostLayout from "../../layouts/PostLayout.astro";
+
+export const getStaticPaths = async () => {
+  const miscPosts = await Astro.glob("../../content/misc/*.md");
+  return miscPosts.map((misc) => {
+    const { slug, thumbnail } = misc.frontmatter;
+    const { Content } = misc;
+    const modifiedSlug = slug.split(" ").join("-");
+    return {
+      params: { slug: modifiedSlug },
+      props: { slug, Content, thumbnail },
+    };
+  });
+};
+
+const { slug, Content, thumbnail } = Astro.props;
+---
+
+<PostLayout slug={slug} Content={Content} thumbnail={thumbnail} />

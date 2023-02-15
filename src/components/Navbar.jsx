@@ -42,6 +42,9 @@ const Navbar = () => {
 
       <div className="navbar-menu">
         <div className="navbar-start">
+          <a href="/" className="navbar-item">
+            Home
+          </a>
           <a href="/short-stories" className="navbar-item">
             Short stories
           </a>
@@ -52,17 +55,17 @@ const Navbar = () => {
             <a className="navbar-link">More</a>
 
             <div className="navbar-dropdown">
-              <a href="/search" className="navbar-item">
-                search index
-              </a>
               <a href="/anime" className="navbar-item">
                 Anime
+              </a>
+              <a href="/search" className="navbar-item">
+                search index
               </a>
               <a
                 className="navbar-item random"
                 onClick={() => theme.set(randomize(themeList.length - 1, 0))}
               >
-                random color
+                randomize theme
               </a>
             </div>
           </div>
