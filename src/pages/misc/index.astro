@@ -27,7 +27,18 @@ miscs = miscs.sort((a, b) => {
     color: rgb(199, 197, 211) !important;
   }
 </style>
-<Layout>
+<Layout title="misc | miscellaneous">
+  <meta
+    name="description"
+    content="Check out miscellaneous discussions"
+    slot="head-slot"
+  />
+  <meta
+    name="keywords"
+    content="miscellaneous, writing, essay, essays, discussions, posts, short writing, short essay"
+    slot="head-slot"
+  />
+  <meta name="author" content="misc" slot="head-slot" />
   <Home client:load>
     <div class="section">
       <Breadcrumbs>

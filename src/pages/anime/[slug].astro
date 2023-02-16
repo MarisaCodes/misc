@@ -1,7 +1,8 @@
 ---
+import Post from "../../components/Post";
 import PostContent from "../../components/PostContent.astro";
 import { staticPathsSlugs } from "../../funcs/staticPathsSlugs";
-import PostLayout from "../../layouts/PostLayout.astro";
+import Layout from "../../layouts/Layout.astro";
 
 export const getStaticPaths = async () => {
   const animes = await Astro.glob("../../content/anime/*.md");
@@ -9,19 +10,32 @@ export const getStaticPaths = async () => {
   return staticPathsSlugs(animes);
 };
 const { title, thumbnail, Content, href, date, keywords } = Astro.props;
+const metaKeywords = keywords
+  .split(" ")
+  .map((word) => word.split("-").join(" "))
+  .join(", ");
 ---
 
-<PostLayout>
-  <article class="section">
-    <PostContent
-      href={href}
-      date={date}
-      title={title}
-      thumbnail={thumbnail}
-      keywords={keywords}
-    >
-      <Content />
-    </PostContent>
-  </article>
-  <hr class="navbar-separator my-0" />
-</PostLayout>
+<Layout title={title}>
+  <meta
+    name="description"
+    content="Check out short stories from various genres!"
+    slot="head-slot"
+  />
+  {(<meta name="keywords" content={metaKeywords} slot="head-slot" />)}
+  <meta name="author" content="misc" slot="head-slot" />
+  <Post client:load>
+    <article class="section">
+      <PostContent
+        href={href}
+        date={date}
+        title={title}
+        thumbnail={thumbnail}
+        keywords={keywords}
+      >
+        <Content />
+      </PostContent>
+    </article>
+    <hr class="navbar-separator my-0" />
+  </Post>
+</Layout>

@@ -27,7 +27,18 @@ haikus = haikus.sort((a, b) => {
     color: rgb(199, 197, 211) !important;
   }
 </style>
-<Layout>
+<Layout title="misc | haiku">
+  <meta
+    name="description"
+    content="Check out Haikus"
+    slot="head-slot"
+  />
+  <meta
+    name="keywords"
+    content="Haiku, haikus, writing, poems, short poems"
+    slot="head-slot"
+  />
+  <meta name="author" content="misc" slot="head-slot" />
   <Home client:load>
     <div class="section">
       <Breadcrumbs>

@@ -37,7 +37,18 @@ animes = animes.sort((a, b) => {
 });
 ---
 
-<Layout>
+<Layout title="misc | Home">
+  <meta
+    name="description"
+    content="Check out Short Stories, haikus, anime discussions and more!"
+    slot="head-slot"
+  />
+  <meta
+    name="keywords"
+    content="Short stories, writing, essay, Haiku, Fiction, Flash fiction, Anime"
+    slot="head-slot"
+  />
+  <meta name="author" content="misc" slot="head-slot" />
   <Home client:load>
     <Banner client:load />
     <Message client:load header="Checkout anime posts">

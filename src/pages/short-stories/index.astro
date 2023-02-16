@@ -32,12 +32,25 @@ stories = stories.sort((a, b) => {
     color: rgb(199, 197, 211) !important;
   }
 </style>
-<Layout>
+<Layout title="misc | short stories">
+  <meta
+    name="description"
+    content="Check out short stories from various genres!"
+    slot="head-slot"
+  />
+  <meta
+    name="keywords"
+    content="short stories, flash fiction, writing, stories, story, short writing, genres, different genres"
+    slot="head-slot"
+  />
+  <meta name="author" content="misc" slot="head-slot" />
   <Home client:load>
     <div class="section">
       <Breadcrumbs>
         <li><a class="custom-a" href="/">Home</a></li>
-        <li><a class="custom-active" href="/short-stories">Short stories</a></li>
+        <li>
+          <a class="custom-active" href="/short-stories">Short stories</a>
+        </li>
       </Breadcrumbs>
       <div class="search-div" style="max-width: fit-content;">
         <input

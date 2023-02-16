@@ -1,21 +1,24 @@
 ---
 import PostContent from "../../components/PostContent.astro";
 import { staticPathsSlugs } from "../../funcs/staticPathsSlugs";
-import PostLayout from "../../layouts/PostLayout.astro";
+import Layout from "../../layouts/Layout.astro";
 
 export const getStaticPaths = async () => {
   const haikus = await Astro.glob("../../content/haiku/*.md");
   return staticPathsSlugs(haikus);
 };
 
-const { Content, title, href,date } = Astro.props;
+const { Content, title, href, date, keywords } = Astro.props;
+const metaKeywords = keywords
+  .split(" ")
+  .map((word) => word.split("-").join(" "))
+  .join(", ");
 ---
 
-<PostLayout>
-  <article class="section">
-    <PostContent title={title} date={date} href={href}>
-      <Content />
-    </PostContent>
-  </article>
-  <hr class="navbar-separator my-0" />
-</PostLayout>
+<Layout title={title} />
+<article class="section">
+  <PostContent title={title} date={date} href={href}>
+    <Content />
+  </PostContent>
+</article>
+<hr class="navbar-separator my-0" />

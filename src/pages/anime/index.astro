@@ -34,7 +34,18 @@ animes = animes.sort((a, b) => {
   }
 </style>
 
-<Layout>
+<Layout title="misc | Anime">
+  <meta
+    name="description"
+    content="Check out anime discussions and more!"
+    slot="head-slot"
+  />
+  <meta
+    name="keywords"
+    content="Anime, anime discussions, anime recommendations, anime posts"
+    slot="head-slot"
+  />
+  <meta name="author" content="misc" slot="head-slot" />
   <Home client:load>
     <div class="section">
       <Breadcrumbs>

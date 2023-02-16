@@ -2,10 +2,11 @@
 import Footer from "../components/Footer.jsx";
 import Head from "../components/Head.astro";
 import Navbar from "../components/Navbar";
+const { title } = Astro.props;
 ---
 
 <html lang="en">
-  <Head>
+  <Head title={title}>
     <slot name="head-slot" />
   </Head>
   <body>
