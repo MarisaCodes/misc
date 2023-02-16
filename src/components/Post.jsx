@@ -1,16 +1,14 @@
 import { useStore } from "@nanostores/preact";
+import { testTheme } from "../stores/testTheme";
 import { theme } from "../stores/theme";
 
 const Post = ({ children }) => {
-  const $theme = useStore(theme);
+  const $testTheme = useStore(testTheme);
   return (
     <div
       className={
-        $theme.color.includes("black") || $theme.color.includes("dark")
-          ? $theme.bg
-          : $theme.bg + "-light"
+        $testTheme.secondaryColorClass + " " + $testTheme.secondaryBgClass
       }
-      style={{ color: $theme.text }}
     >
       {children}
     </div>

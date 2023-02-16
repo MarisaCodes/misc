@@ -1,6 +1,7 @@
 import { useStore } from "@nanostores/preact";
 import { theme } from "../stores/theme";
 import "../css/indexPages.css";
+import { testTheme } from "../stores/testTheme";
 const PostCards = ({
   children,
   title,
@@ -9,23 +10,22 @@ const PostCards = ({
   date,
   keywords,
 }) => {
-  const $theme = useStore(theme);
+  //const $theme = useStore(theme);
+  const $testTheme = useStore(testTheme);
   let keywordsArr = keywords.split(" ");
   keywordsArr = keywordsArr.map((word) => word.split("-").join(" "));
   return (
     <div
       className={
-        "card mt-6 " +
-        ($theme.color.includes("dark") || $theme.color.includes("black")
-          ? $theme.bg
-          : "has-background-light")
+        "card mt-6 " + $testTheme.secondaryBgClass + " " + $testTheme.colorClass
       }
-      style={{ color: $theme.text }}
     >
       <div className="card-header is-align-items-center is-flex-wrap-wrap">
         <p
-          className="card-header-title is-size-4-tablet is-size-5-mobile has-text-weight-bold"
-          style={{ color: $theme.text }}
+          className={
+            "card-header-title is-size-4-tablet is-size-5-mobile has-text-weight-bold " +
+            $testTheme.colorClass
+          }
         >
           {title}
         </p>
@@ -57,20 +57,19 @@ const PostCards = ({
         </div>
       )}
       <div className="card-content">
-        <div className="content is-size-5-tablet is-size-6-mobile custom">
+        <div
+          className={
+            "content is-size-5-tablet is-size-6-mobile custom " +
+            $testTheme.secondaryColorClass
+          }
+        >
           <div className="container">{children}</div>
         </div>
       </div>
-      <footer className="card-footer">
+      <footer>
         <a
           href={href}
-          className={
-            "card-footer-item button is-radiusless " +
-            $theme.color +
-            ($theme.color.includes("black") || $theme.color.includes("dark")
-              ? ""
-              : " is-light")
-          }
+          className={"card-footer-item button is-radiusless " + $testTheme.darkBtnClass}
         >
           Read more...
         </a>

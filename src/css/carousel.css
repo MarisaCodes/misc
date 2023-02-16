@@ -26,12 +26,12 @@
 button.left {
   position: absolute;
   top: 50%;
-  left: 0px;
+  left: 5px;
   z-index: 1;
 }
 button.right {
   position: absolute;
   top: 50%;
-  right: 0px;
+  right: 5px;
   z-index: 1;
 }

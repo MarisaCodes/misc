@@ -1,17 +1,18 @@
 import { useStore } from "@nanostores/preact";
 import "../css/cards.css";
+import { testTheme } from "../stores/testTheme";
 import { theme } from "../stores/theme";
 const Card = ({ href, title, date, thumbnail = null, children }) => {
-  const $theme = useStore(theme);
+  //const $theme = useStore(theme);
+  const $testTheme = useStore(testTheme);
   return (
     <div
       className={
         "card card-hover " +
-        ($theme.color.includes("dark") || $theme.color.includes("black")
-          ? $theme.bg
-          : "has-background-light")
+        $testTheme.secondaryBgClass +
+        " " +
+        $testTheme.colorClass
       }
-      style={{ color: $theme.text }}
     >
       {thumbnail && (
         <div className="card-image">
@@ -26,8 +27,10 @@ const Card = ({ href, title, date, thumbnail = null, children }) => {
       )}
       <div className="pt-4 px-4">
         <div
-          className="is-size-4-tablet custom-title is-size-5-mobile has-text-weight-bold"
-          style={{ color: $theme.text }}
+          className={
+            "is-size-4-tablet custom-title is-size-5-mobile has-text-weight-bold " +
+            $testTheme.colorClass
+          }
         >
           {title}
         </div>
@@ -41,20 +44,16 @@ const Card = ({ href, title, date, thumbnail = null, children }) => {
       </div>
       <time
         class="is-inline-block m-1 p-2"
-        style={{ color: $theme.text, borderRadius: "5px", fontSize: "x-small" }}
+        style={{ borderRadius: "5px", fontSize: "x-small" }}
         datetime={date}
       >
         {new Date(date).toDateString()}
       </time>
-      <footer className="card-footer">
+      <footer>
         <a
           href={href}
           className={
-            "card-footer-item button is-radiusless " +
-            $theme.color +
-            ($theme.color.includes("black") || $theme.color.includes("dark")
-              ? ""
-              : " is-light")
+            "card-footer-item button is-radiusless " + $testTheme.orangeBtnClass
           }
         >
           view

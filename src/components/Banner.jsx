@@ -1,19 +1,17 @@
 import { useStore } from "@nanostores/preact";
-import { theme } from "../stores/theme";
+import { testTheme } from "../stores/testTheme";
+//import { theme } from "../stores/theme";
 
 const Banner = () => {
-  const $theme = useStore(theme);
+  // const $theme = useStore(theme);
+  const $testTheme = useStore(testTheme);
   return (
-    <div className={"banner " + $theme.bg}>
+    <div className={"banner " + $testTheme.bgClass}>
       <section className="section py-0">
         <div>
           <figure className="is-3by1 image">
             <img
-              src={
-                $theme.color.includes("black")
-                  ? "/misc-logos__white.png"
-                  : "/misc-logos__black.png"
-              }
+              src="/misc-logos__white.png"
               style={{ objectFit: "scale-down" }}
               alt="misc website logo"
             />

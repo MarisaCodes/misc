@@ -1,11 +1,13 @@
 import { useRef } from "preact/hooks";
 import { useStore } from "@nanostores/preact";
-import { theme } from "../../stores/theme";
+//import { theme } from "../../stores/theme";
 import "../../css/carousel.css";
+import { testTheme } from "../../stores/testTheme";
 const Carousel = ({ children }) => {
-  const $theme = useStore(theme);
+  //const $theme = useStore(theme);
+  const $testTheme = useStore(testTheme);
   const scrollBarStyles = `.thumbBg::-webkit-scrollbar-thumb {
-  background-color: ${$theme.hex};
+  background-color: ${$testTheme.thumbHex};
 }`;
   const carouselRef = useRef();
   const handleClick = (id) => {
@@ -27,11 +29,11 @@ const Carousel = ({ children }) => {
   };
   return (
     <div className="carousel-wrapper">
-      <div className={"carousel thumbBg "} ref={carouselRef}>
+      <div className={"carousel thumbBg"} ref={carouselRef}>
         <style>{scrollBarStyles}</style>
         <button
           className={
-            "button left p-1 is-hidden-mobile " + getButtonTheme($theme.color)
+            "button left p-1 is-hidden-mobile " + $testTheme.darkBtnClass
           }
           onClick={() => handleClick("left")}
         >
@@ -40,7 +42,7 @@ const Carousel = ({ children }) => {
         {children}
         <button
           className={
-            "button right p-1 is-hidden-mobile " + getButtonTheme($theme.color)
+            "button right p-1 is-hidden-mobile " + $testTheme.darkBtnClass
           }
           onClick={() => handleClick("right")}
         >

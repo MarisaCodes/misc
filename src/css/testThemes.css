@@ -1,0 +1,67 @@
+.astro-background {
+  background-color: rgb(29, 26, 45);
+}
+.astro-secondary-background {
+  background-color: rgb(41, 35, 61);
+}
+.astro-color {
+  color: rgb(227, 226, 232) !important;
+}
+.astro-secondary-color {
+  color: rgb(199, 197, 211) !important;
+}
+.astro-btn-light {
+  color: rgb(199, 197, 211);
+  background-color: rgb(48, 44, 61);
+  border: 0;
+  border-radius: 5px;
+}
+.astro-btn-light:hover {
+  box-shadow: 0 0 99999px rgb(0, 0, 0, 0.3) inset !important;
+  color: rgb(199, 197, 211);
+}
+.astro-btn-light:focus {
+  color: rgb(199, 197, 211) !important;
+}
+.astro-btn-dark {
+  border: 2px solid rgb(121, 116, 136);
+  color: rgb(227, 226, 232);
+  background-color: rgb(41, 35, 61);
+  border-radius: 5px;
+}
+.astro-btn-dark:hover {
+  border: 2px solid rgb(121, 116, 136);
+  box-shadow: 0 0 99999px rgb(0, 0, 0, 0.3) inset !important;
+  color: rgb(227, 226, 232);
+}
+.astro-btn-dark:focus {
+  color: rgb(227, 226, 232) !important;
+}
+.astro-link {
+  color: rgb(255, 125, 50);
+}
+.astro-link:hover {
+  color: rgb(210, 106, 45);
+}
+.astro-navbar-item {
+  background-color: rgb(29, 26, 45) !important;
+  color: rgb(227, 226, 232);
+}
+.astro-navbar-item:hover {
+  color: rgb(227, 226, 232) !important;
+  background-color: rgb(21, 19, 33) !important;
+}
+.astro-orange-btn {
+  color: rgb(255, 125, 50) !important;
+  background-color: rgb(29, 26, 45) !important;
+  border: 1px solid rgb(41, 35, 61);
+}
+.astro-orange-btn:hover {
+  color: rgb(255, 125, 50) !important;
+  background-color: rgb(29, 26, 45) !important;
+  border: 1px solid rgb(41, 35, 61);
+  box-shadow: 0 0 99999px rgb(0, 0, 0, 0.3) inset !important;
+}
+.astro-orange-btn:focus {
+  color: rgb(255, 125, 50) !important;
+}
