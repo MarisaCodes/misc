@@ -1,17 +1,12 @@
 import { useStore } from "@nanostores/preact";
 import "../css/cards.css";
-import { testTheme } from "../stores/testTheme";
 import { theme } from "../stores/theme";
 const Card = ({ href, title, date, thumbnail = null, children }) => {
-  //const $theme = useStore(theme);
-  const $testTheme = useStore(testTheme);
+  const $theme = useStore(theme);
   return (
     <div
       className={
-        "card card-hover " +
-        $testTheme.secondaryBgClass +
-        " " +
-        $testTheme.colorClass
+        "card card-hover " + $theme.secondaryBgClass + " " + $theme.colorClass
       }
     >
       {thumbnail && (
@@ -29,7 +24,7 @@ const Card = ({ href, title, date, thumbnail = null, children }) => {
         <div
           className={
             "is-size-4-tablet custom-title is-size-5-mobile has-text-weight-bold " +
-            $testTheme.colorClass
+            $theme.colorClass
           }
         >
           {title}
@@ -53,7 +48,7 @@ const Card = ({ href, title, date, thumbnail = null, children }) => {
         <a
           href={href}
           className={
-            "card-footer-item button is-radiusless " + $testTheme.orangeBtnClass
+            "card-footer-item button is-radiusless " + $theme.orangeBtnClass
           }
         >
           view

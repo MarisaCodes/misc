@@ -1,22 +1,15 @@
 import { useStore } from "@nanostores/preact";
-import { testTheme } from "../stores/testTheme";
-//import { theme } from "../stores/theme";
-import { themeList } from "../stores/themeList";
+import { theme } from "../stores/theme";
 const Navbar = () => {
-  const randomize = (max, min) => {
-    const randInt = Math.floor(Math.random() * (max - min + 1) + min);
-    return themeList[randInt];
-  };
-  //const $theme = useStore(theme);
-  const $testTheme = useStore(testTheme);
+  const $theme = useStore(theme);
   return (
     <nav
-      className={"navbar " + $testTheme.bgClass + " " + $testTheme.colorClass}
+      className={"navbar " + $theme.bgClass + " " + $theme.colorClass}
       role="navigation"
       aria-label="main navigation"
     >
       <div className="navbar-brand is-align-items-center">
-        <a href="/" className={"navbar-item p-0 " + $testTheme.navbarItemClass}>
+        <a href="/" className={"navbar-item p-0 " + $theme.navbarItemClass}>
           <img
             src="/misc-logos__white.png"
             alt="navbar logo"
@@ -38,43 +31,32 @@ const Navbar = () => {
         </a>
       </div>
 
-      <div className={"navbar-menu "+$testTheme.bgClass}>
+      <div className={"navbar-menu " + $theme.bgClass}>
         <div className="navbar-start">
-          <a href="/" className={"navbar-item " + $testTheme.navbarItemClass}>
+          <a href="/" className={"navbar-item " + $theme.navbarItemClass}>
             Home
           </a>
           <a
             href="/short-stories"
-            className={"navbar-item " + $testTheme.navbarItemClass}
+            className={"navbar-item " + $theme.navbarItemClass}
           >
             Short stories
           </a>
-          <a
-            href="/haiku"
-            className={"navbar-item " + $testTheme.navbarItemClass}
-          >
+          <a href="/haiku" className={"navbar-item " + $theme.navbarItemClass}>
             Haiku
           </a>
-          <a
-            href="/anime"
-            className={"navbar-item " + $testTheme.navbarItemClass}
-          >
+          <a href="/anime" className={"navbar-item " + $theme.navbarItemClass}>
             Anime
           </a>
         </div>
         <div className="navbar-end">
-          <a
-            href="/misc"
-            className={"navbar-item " + $testTheme.navbarItemClass}
-          >
+          <a href="/misc" className={"navbar-item " + $theme.navbarItemClass}>
             misc.
           </a>
           <div className="navbar-item">
             <a
               href="#"
-              className={
-                "button is-aligned-self-center " + $testTheme.darkBtnClass
-              }
+              className={"button is-aligned-self-center " + $theme.darkBtnClass}
             >
               Join the Discod server
             </a>

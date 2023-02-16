@@ -1,12 +1,10 @@
 import { useStore } from "@nanostores/preact";
-import { testTheme } from "../stores/testTheme";
-//import { theme } from "../stores/theme";
+import { theme } from "../stores/theme";
 
 const Banner = () => {
-  // const $theme = useStore(theme);
-  const $testTheme = useStore(testTheme);
+  const $theme = useStore(theme);
   return (
-    <div className={"banner " + $testTheme.bgClass}>
+    <div className={"banner " + $theme.bgClass}>
       <section className="section py-0">
         <div>
           <figure className="is-3by1 image">

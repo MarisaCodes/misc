@@ -1,7 +1,6 @@
 import { useStore } from "@nanostores/preact";
-import { theme } from "../stores/theme";
 import "../css/indexPages.css";
-import { testTheme } from "../stores/testTheme";
+import { theme } from "../stores/theme";
 const PostCards = ({
   children,
   title,
@@ -10,21 +9,20 @@ const PostCards = ({
   date,
   keywords,
 }) => {
-  //const $theme = useStore(theme);
-  const $testTheme = useStore(testTheme);
+  const $theme = useStore(theme);
   let keywordsArr = keywords.split(" ");
   keywordsArr = keywordsArr.map((word) => word.split("-").join(" "));
   return (
     <div
       className={
-        "card mt-6 " + $testTheme.secondaryBgClass + " " + $testTheme.colorClass
+        "card mt-6 " + $theme.secondaryBgClass + " " + $theme.colorClass
       }
     >
       <div className="card-header is-align-items-center is-flex-wrap-wrap">
         <p
           className={
             "card-header-title is-size-4-tablet is-size-5-mobile has-text-weight-bold " +
-            $testTheme.colorClass
+            $theme.colorClass
           }
         >
           {title}
@@ -60,7 +58,7 @@ const PostCards = ({
         <div
           className={
             "content is-size-5-tablet is-size-6-mobile custom " +
-            $testTheme.secondaryColorClass
+            $theme.secondaryColorClass
           }
         >
           <div className="container">{children}</div>
@@ -69,7 +67,9 @@ const PostCards = ({
       <footer>
         <a
           href={href}
-          className={"card-footer-item button is-radiusless " + $testTheme.darkBtnClass}
+          className={
+            "card-footer-item button is-radiusless " + $theme.darkBtnClass
+          }
         >
           Read more...
         </a>

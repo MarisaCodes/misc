@@ -1,31 +1,28 @@
 import { useStore } from "@nanostores/preact";
-import { testTheme } from "../stores/testTheme";
-//import { theme } from "../stores/theme";
+import { theme } from "../stores/theme";
 const Message = ({ header, children }) => {
-  //const $theme = useStore(theme);
-  const $testTheme = useStore(testTheme);
-  // +
-  //         ($theme.color.includes("dark") || $theme.color.includes("black")
-  //           ? $theme.secondaryBg
-  //           : $theme.bg + "-light") style={{ color: $theme.text }}
+  const $theme = useStore(theme);
+
   return (
     <div
       className={
-        "message mt-4 is-radiusless " +
-        $testTheme.bgClass +
-        " " +
-        $testTheme.colorClass
+        "message mt-4 is-radiusless " + $theme.bgClass + " " + $theme.colorClass
       }
     >
-      <div className={"message-header is-radiusless is-size-5-tablet is-size-6-mobile "+$testTheme.secondaryBgClass}>
+      <div
+        className={
+          "message-header is-radiusless is-size-5-tablet is-size-6-mobile " +
+          $theme.secondaryBgClass
+        }
+      >
         {header}
       </div>
       <div
         className={
           "message-body px-0 py-4 is-radiusless " +
-          $testTheme.colorClass +
+          $theme.colorClass +
           " " +
-          $testTheme.bgClass
+          $theme.bgClass
         }
       >
         {children}

@@ -1,15 +1,13 @@
 import { useStore } from "@nanostores/preact";
-import { testTheme } from "../stores/testTheme";
 import { theme } from "../stores/theme";
 
 const Footer = () => {
-  //const $theme = useStore(theme);
-  const $testTheme = useStore(testTheme);
+  const $theme = useStore(theme);
 
   return (
     <footer
       className={`footer pb-0 ${
-        $testTheme.secondaryBgClass + " " + $testTheme.colorClass
+        $theme.secondaryBgClass + " " + $theme.colorClass
       }`}
     >
       <div className="columns">
@@ -24,7 +22,7 @@ const Footer = () => {
           </div>
           <div>
             <div>
-              <a className={"mb-5 button " + $testTheme.darkBtnClass} href="#">
+              <a className={"mb-5 button " + $theme.darkBtnClass} href="#">
                 Checkout to my patreon
               </a>
             </div>
@@ -33,13 +31,13 @@ const Footer = () => {
           <div
             className={
               "has-text-weight-bold my-3 mb-6 ml-4 " +
-              $testTheme.secondaryColorClass
+              $theme.secondaryColorClass
             }
           >
             Join my discord server:
           </div>
           <div>
-            <a href="#" className={"button " + $testTheme.darkBtnClass}>
+            <a href="#" className={"button " + $theme.darkBtnClass}>
               Discord server
             </a>
           </div>
@@ -54,7 +52,7 @@ const Footer = () => {
         <div className="content column is-4 mt-6">
           <h4
             className={
-              "subtitle has-text-weight-bold is-size-4 " + $testTheme.colorClass
+              "subtitle has-text-weight-bold is-size-4 " + $theme.colorClass
             }
           >
             Navigate
@@ -62,16 +60,13 @@ const Footer = () => {
           <hr className="navbar-divider has-background-warning is-block" />
           <div>
             <li style="list-style-type: none;">
-              <a
-                className={"mb-3 button " + $testTheme.orangeBtnClass}
-                href="/"
-              >
+              <a className={"mb-3 button " + $theme.orangeBtnClass} href="/">
                 Home
               </a>
             </li>
             <li style="list-style-type: none;">
               <a
-                className={"mb-3 button " + $testTheme.orangeBtnClass}
+                className={"mb-3 button " + $theme.orangeBtnClass}
                 href="/short-stories"
               >
                 Short stories
@@ -79,7 +74,7 @@ const Footer = () => {
             </li>
             <li style="list-style-type: none;">
               <a
-                className={"mb-3 button " + $testTheme.orangeBtnClass}
+                className={"mb-3 button " + $theme.orangeBtnClass}
                 href="/haiku"
               >
                 Haiku
@@ -87,7 +82,7 @@ const Footer = () => {
             </li>
             <li style="list-style-type: none;">
               <a
-                className={"mb-3 button " + $testTheme.orangeBtnClass}
+                className={"mb-3 button " + $theme.orangeBtnClass}
                 href="/anime"
               >
                 Anime
@@ -95,7 +90,7 @@ const Footer = () => {
             </li>
             <li style="list-style-type: none;">
               <a
-                className={"mb-3 button " + $testTheme.orangeBtnClass}
+                className={"mb-3 button " + $theme.orangeBtnClass}
                 href="/misc"
               >
                 misc.
@@ -104,7 +99,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className={"has-text-centered " + $testTheme.secondaryColorClass}>
+      <div className={"has-text-centered " + $theme.secondaryColorClass}>
         Copyright &copy; {new Date().getFullYear()} some rights reserved 💓
       </div>
     </footer>

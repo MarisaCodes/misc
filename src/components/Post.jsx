@@ -1,15 +1,10 @@
 import { useStore } from "@nanostores/preact";
-import { testTheme } from "../stores/testTheme";
 import { theme } from "../stores/theme";
 
 const Post = ({ children }) => {
-  const $testTheme = useStore(testTheme);
+  const $theme = useStore(theme);
   return (
-    <div
-      className={
-        $testTheme.secondaryColorClass + " " + $testTheme.secondaryBgClass
-      }
-    >
+    <div className={$theme.secondaryColorClass + " " + $theme.secondaryBgClass}>
       {children}
     </div>
   );
