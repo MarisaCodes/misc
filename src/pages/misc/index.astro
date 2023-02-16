@@ -20,13 +20,19 @@ miscs = miscs.sort((a, b) => {
     align-items: center;
     gap: 10px;
   }
+  .custom-a {
+    color: rgb(255, 125, 50) !important;
+  }
+  .custom-active {
+    color: rgb(199, 197, 211) !important;
+  }
 </style>
 <Layout>
   <Home client:load>
     <div class="section">
       <Breadcrumbs>
-        <li><a href="/">Home</a></li>
-        <li class="is-active"><a href="/misc">misc</a></li>
+        <li><a class="custom-a" href="/">Home</a></li>
+        <li><a class="custom-active" href="/misc">misc</a></li>
       </Breadcrumbs>
       <div class="search-div" style="max-width: fit-content;">
         <input

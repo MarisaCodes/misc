@@ -20,13 +20,19 @@ haikus = haikus.sort((a, b) => {
     -webkit-line-clamp: 3;
     overflow: hidden;
   }
+  .custom-a {
+    color: rgb(255, 125, 50) !important;
+  }
+  .custom-active {
+    color: rgb(199, 197, 211) !important;
+  }
 </style>
 <Layout>
   <Home client:load>
     <div class="section">
       <Breadcrumbs>
-        <li><a href="/">Home</a></li>
-        <li class="is-active"><a href="/haiku">Haiku</a></li>
+        <li><a class="custom-a" href="/">Home</a></li>
+        <li><a class="custom-active" href="/haiku">Haiku</a></li>
       </Breadcrumbs>
       <div class="search-div" style="max-width: fit-content;">
         <input

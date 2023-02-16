@@ -4,14 +4,27 @@ import { breadcrumbs } from "../funcs/crumbs";
 const { title, thumbnail, href, date } = Astro.props;
 ---
 
+<style>
+  .custom-a {
+    color: rgb(255, 125, 50) !important;
+  }
+  .custom-active {
+    color: rgb(199, 197, 211) !important;
+  }
+</style>
 <div>
   {
     href && (
       <Breadcrumbs>
         {breadcrumbs(href, title).map((crumbObj) => {
           return (
-            <li class={crumbObj.active ? "is-active" : ""}>
-              <a href={crumbObj.link}>{crumbObj.path}</a>
+            <li>
+              <a
+                class={crumbObj.active ? "custom-active" : "custom-a"}
+                href={crumbObj.link}
+              >
+                {crumbObj.path}
+              </a>
             </li>
           );
         })}
