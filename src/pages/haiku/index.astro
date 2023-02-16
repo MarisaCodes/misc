@@ -28,11 +28,27 @@ haikus = haikus.sort((a, b) => {
         <li><a href="/">Home</a></li>
         <li class="is-active"><a href="/haiku">Haiku</a></li>
       </Breadcrumbs>
+      <div class="search-div" style="max-width: fit-content;">
+        <input
+          type="search"
+          class="input"
+          autocomplete="off"
+          id="search-input"
+          placeholder="Filter with keywords..."
+        />
+        <span class="tag is-info is-medium">Filter using keywords</span>
+      </div>
       {
         haikus.map(({ frontmatter, Content }) => {
-          const { title, href, date } = frontmatter;
+          const { title, href, date, keywords } = frontmatter;
           return (
-            <PostCards date={date} title={title} href={href} client:load>
+            <PostCards
+              keywords={keywords}
+              date={date}
+              title={title}
+              href={href}
+              client:load
+            >
               <Content />
             </PostCards>
           );
@@ -41,3 +57,4 @@ haikus = haikus.sort((a, b) => {
     </div>
   </Home>
 </Layout>
+<script src="../scripts/filterTags.js"></script>

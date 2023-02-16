@@ -3,7 +3,7 @@ export const staticPathsSlugs = async (posts) => {
     const { slug, thumbnail, href, title, date } = frontmatter;
     return {
       params: { slug },
-      props: { Content, thumbnail, href, title, date },
+      props: { Content, thumbnail, href, title, date, keywords },
     };
   });
 };

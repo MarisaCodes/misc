@@ -38,16 +38,22 @@ stories = stories.sort((a, b) => {
           type="search"
           class="input"
           autocomplete="off"
-          id="search-anime-input"
+          id="search-input"
           placeholder="Filter with genre..."
         />
         <span class="tag is-info is-medium">Filter using genre</span>
       </div>
       {
         stories.map(({ frontmatter, Content }) => {
-          const { title, href, date } = frontmatter;
+          const { title, href, date, keywords } = frontmatter;
           return (
-            <PostCards title={title} date={date} href={href} client:load>
+            <PostCards
+              keywords={keywords}
+              title={title}
+              date={date}
+              href={href}
+              client:load
+            >
               <Content />
             </PostCards>
           );
@@ -56,3 +62,5 @@ stories = stories.sort((a, b) => {
     </div>
   </Home>
 </Layout>
+
+<script src="../scripts/filterTags.js"></script>
