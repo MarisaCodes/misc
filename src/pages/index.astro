@@ -7,10 +7,34 @@ import Message from "../components/Message";
 import Home from "../components/page-comps/Home";
 import Layout from "../layouts/Layout.astro";
 
-const haikus = await Astro.glob("../content/haiku/*.md");
-const miscPosts = await Astro.glob("../content/misc/*.md");
-const stories = await Astro.glob("../content/short-stories/*.md");
-const animes = await Astro.glob("../content/anime/*.md");
+let haikus = await Astro.glob("../content/haiku/*.md");
+haikus = haikus.sort((a, b) => {
+  return (
+    new Date(b.frontmatter.date).getTime() -
+    new Date(a.frontmatter.date).getTime()
+  );
+});
+let miscPosts = await Astro.glob("../content/misc/*.md");
+miscPosts = miscPosts.sort((a, b) => {
+  return (
+    new Date(b.frontmatter.date).getTime() -
+    new Date(a.frontmatter.date).getTime()
+  );
+});
+let stories = await Astro.glob("../content/short-stories/*.md");
+stories = stories.sort((a, b) => {
+  return (
+    new Date(b.frontmatter.date).getTime() -
+    new Date(a.frontmatter.date).getTime()
+  );
+});
+let animes = await Astro.glob("../content/anime/*.md");
+animes = animes.sort((a, b) => {
+  return (
+    new Date(b.frontmatter.date).getTime() -
+    new Date(a.frontmatter.date).getTime()
+  );
+});
 ---
 
 <Layout>
@@ -20,12 +44,13 @@ const animes = await Astro.glob("../content/anime/*.md");
       <Carousel client:load>
         {
           animes.map((anime) => {
-            const { title, href, thumbnail } = anime.frontmatter;
+            const { title, href, thumbnail, date } = anime.frontmatter;
             const { Content } = anime;
 
             return (
               <CarouselCell>
                 <Card
+                  date={date}
                   title={title}
                   href={href}
                   thumbnail={thumbnail}
@@ -44,12 +69,12 @@ const animes = await Astro.glob("../content/anime/*.md");
       <Carousel client:load>
         {
           haikus.map((haiku) => {
-            const { title, href } = haiku.frontmatter;
+            const { title, href, date } = haiku.frontmatter;
             const { Content } = haiku;
 
             return (
               <CarouselCell>
-                <Card title={title} href={href} client:load>
+                <Card date={date} title={title} href={href} client:load>
                   <Content />
                 </Card>
               </CarouselCell>
@@ -63,11 +88,12 @@ const animes = await Astro.glob("../content/anime/*.md");
       <Carousel client:load>
         {
           miscPosts.map(({ frontmatter, Content }) => {
-            const { thumbnail, href, title } = frontmatter;
+            const { thumbnail, date, href, title } = frontmatter;
 
             return (
               <CarouselCell>
                 <Card
+                  date={date}
                   title={title}
                   href={href}
                   thumbnail={thumbnail}
@@ -86,10 +112,10 @@ const animes = await Astro.glob("../content/anime/*.md");
       <Carousel client:load>
         {
           stories.map(({ frontmatter, Content }) => {
-            const { title, href } = frontmatter;
+            const { title, date, href } = frontmatter;
             return (
               <CarouselCell>
-                <Card title={title} href={href} client:load>
+                <Card date={date} title={title} href={href} client:load>
                   <Content />
                 </Card>
               </CarouselCell>

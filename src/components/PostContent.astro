@@ -1,7 +1,7 @@
 ---
 import Breadcrumbs from "./Breadcrumbs.astro";
 import { breadcrumbs } from "../funcs/crumbs";
-const { title, thumbnail, href } = Astro.props;
+const { title, thumbnail, href, date } = Astro.props;
 ---
 
 <div>
@@ -19,6 +19,13 @@ const { title, thumbnail, href } = Astro.props;
     )
   }
   <div class="container">
+    <time
+      class="is-inline-block m-1 p-2"
+      style="border-radius: 5px;font-size: x-small;background-color: black;color:#fff"
+      datetime={date}
+    >
+      {new Date(date).toDateString()}
+    </time>
     {
       title && (
         <p class="is-block has-text-weight-bold is-size-3-tablet is-size-5-mobile mb-6">

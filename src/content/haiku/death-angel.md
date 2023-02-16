@@ -2,6 +2,7 @@
 href: /haiku/Angel-of-death
 slug: Angel-of-death
 title: Angel of death
+date: 1/10/2023
 ---
 
 Enwrapped by the night/

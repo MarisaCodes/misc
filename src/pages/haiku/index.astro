@@ -4,7 +4,14 @@ import Home from "../../components/page-comps/Home";
 import PostCards from "../../components/PostCards";
 import Layout from "../../layouts/Layout.astro";
 
-const haikus = await Astro.glob("../../content/haiku/*.md");
+let haikus = await Astro.glob("../../content/haiku/*.md");
+haikus -
+  haikus.sort((a, b) => {
+    return (
+      new Date(b.frontmatter.date).getTime() -
+      new Date(a.frontmatter.date).getTime()
+    );
+  });
 ---
 
 <style>
@@ -24,9 +31,9 @@ const haikus = await Astro.glob("../../content/haiku/*.md");
       </Breadcrumbs>
       {
         haikus.map(({ frontmatter, Content }) => {
-          const { title, href } = frontmatter;
+          const { title, href, date } = frontmatter;
           return (
-            <PostCards title={title} href={href} client:load>
+            <PostCards date={date} title={title} href={href} client:load>
               <Content />
             </PostCards>
           );

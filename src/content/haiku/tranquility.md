@@ -2,6 +2,7 @@
 href: /haiku/A-tranquil-Spirit
 slug: A-tranquil-Spirit
 title: A tranquil Spirit
+date: 1/20/2023
 ---
 
 A tranquil spirit/

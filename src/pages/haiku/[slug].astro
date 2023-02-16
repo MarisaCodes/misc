@@ -8,12 +8,12 @@ export const getStaticPaths = async () => {
   return staticPathsSlugs(haikus);
 };
 
-const { Content, title, href } = Astro.props;
+const { Content, title, href,date } = Astro.props;
 ---
 
 <PostLayout>
   <article class="section">
-    <PostContent title={title} href={href}>
+    <PostContent title={title} date={date} href={href}>
       <Content />
     </PostContent>
   </article>

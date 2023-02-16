@@ -1,7 +1,6 @@
 ---
 import PostContent from "../../components/PostContent.astro";
 import { staticPathsSlugs } from "../../funcs/staticPathsSlugs";
-import Layout from "../../layouts/Layout.astro";
 import PostLayout from "../../layouts/PostLayout.astro";
 
 export const getStaticPaths = async () => {
@@ -10,12 +9,12 @@ export const getStaticPaths = async () => {
   return staticPathsSlugs(stories);
 };
 
-const { title, Content, href } = Astro.props;
+const { title, Content, href, date } = Astro.props;
 ---
 
 <PostLayout>
   <article class="section">
-    <PostContent href={href} title={title}>
+    <PostContent href={href} date={date} title={title}>
       <Content />
     </PostContent>
   </article>

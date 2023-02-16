@@ -3,7 +3,13 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Home from "../../components/page-comps/Home";
 import PostCards from "../../components/PostCards";
 import Layout from "../../layouts/Layout.astro";
-const miscs = await Astro.glob("../../content/misc/*.md");
+let miscs = await Astro.glob("../../content/misc/*.md");
+miscs = miscs.sort((a, b) => {
+  return (
+    new Date(b.frontmatter.date).getTime() -
+    new Date(a.frontmatter.date).getTime()
+  );
+});
 ---
 
 <style>
@@ -34,10 +40,11 @@ const miscs = await Astro.glob("../../content/misc/*.md");
       </div>
       {
         miscs.map(({ frontmatter, Content }) => {
-          const { title, href, thumbnail } = frontmatter;
+          const { title, date, href, thumbnail } = frontmatter;
           return (
             <div class="miscs">
               <PostCards
+                date={date}
                 title={title}
                 href={href}
                 thumbnail={thumbnail}

@@ -1,7 +1,7 @@
 import { useStore } from "@nanostores/preact";
 import { theme } from "../stores/theme";
 import "../css/indexPages.css";
-const PostCards = ({ children, title, href, thumbnail = null }) => {
+const PostCards = ({ children, title, href, thumbnail = null, date }) => {
   const $theme = useStore(theme);
   return (
     <div
@@ -20,6 +20,18 @@ const PostCards = ({ children, title, href, thumbnail = null }) => {
         >
           {title}
         </p>
+        <time
+          class="is-inline-block is-align-self-center m-1 p-2"
+          style={{
+            borderRadius: "5px",
+            backgroundColor: "#000",
+            color: "#fff",
+            fontSize: "x-small",
+          }}
+          datetime={date}
+        >
+          {new Date(date).toDateString()}
+        </time>
       </div>
       {thumbnail && (
         <div class="mt-5">

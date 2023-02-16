@@ -8,12 +8,12 @@ export const getStaticPaths = async () => {
   return staticPathsSlugs(posts);
 };
 
-const { Content, thumbnail, href, title } = Astro.props;
+const { Content, thumbnail, href, title, date } = Astro.props;
 ---
 
 <PostLayout>
   <article class="section">
-    <PostContent href={href} title={title} thumbnail={thumbnail}>
+    <PostContent href={href} title={title} date={date} thumbnail={thumbnail}>
       <Content />
     </PostContent>
   </article>

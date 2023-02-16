@@ -1,7 +1,7 @@
 import { useStore } from "@nanostores/preact";
 import "../css/cards.css";
 import { theme } from "../stores/theme";
-const Card = ({ href, title, thumbnail = null, children }) => {
+const Card = ({ href, title, date, thumbnail = null, children }) => {
   const $theme = useStore(theme);
   return (
     <div
@@ -39,6 +39,13 @@ const Card = ({ href, title, thumbnail = null, children }) => {
           {children}
         </div>
       </div>
+      <time
+        class="is-inline-block m-1 p-2"
+        style={{ color: $theme.text, borderRadius: "5px", fontSize: "x-small" }}
+        datetime={date}
+      >
+        {new Date(date).toDateString()}
+      </time>
       <footer className="card-footer">
         <a
           href={href}
