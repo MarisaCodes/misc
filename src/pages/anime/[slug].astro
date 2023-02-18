@@ -17,11 +17,7 @@ const metaKeywords = keywords
 ---
 
 <Layout title={title}>
-  <meta
-    name="description"
-    content="Check out short stories from various genres!"
-    slot="head-slot"
-  />
+  <meta name="description" content="<description>" slot="head-slot" />
   {(<meta name="keywords" content={metaKeywords} slot="head-slot" />)}
   <meta name="author" content="misc" slot="head-slot" />
   <Post client:load>
@@ -36,6 +32,6 @@ const metaKeywords = keywords
         <Content />
       </PostContent>
     </article>
-    <hr class="navbar-separator my-0" />
   </Post>
+  <hr class="navbar-separator my-0" />
 </Layout>

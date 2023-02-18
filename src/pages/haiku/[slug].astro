@@ -1,4 +1,5 @@
 ---
+import Post from "../../components/Post";
 import PostContent from "../../components/PostContent.astro";
 import { staticPathsSlugs } from "../../funcs/staticPathsSlugs";
 import Layout from "../../layouts/Layout.astro";
@@ -15,10 +16,16 @@ const metaKeywords = keywords
   .join(", ");
 ---
 
-<Layout title={title} />
-<article class="section">
-  <PostContent title={title} date={date} href={href}>
-    <Content />
-  </PostContent>
-</article>
-<hr class="navbar-separator my-0" />
+<Layout title={title}>
+  <meta name="description" content="<description>" slot="head-slot" />
+  {(<meta name="keywords" content={metaKeywords} slot="head-slot" />)}
+  <meta name="author" content="misc" slot="head-slot" />
+  <Post client:load>
+    <article class="section">
+      <PostContent title={title} date={date} href={href}>
+        <Content />
+      </PostContent>
+    </article>
+  </Post>
+  <hr class="navbar-separator my-0" />
+</Layout>

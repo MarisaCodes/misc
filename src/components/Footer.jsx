@@ -13,11 +13,12 @@ const Footer = () => {
       <div className="columns">
         <div className="content column is-5">
           <div className="container px-3">
-            The c-Archive is a comprehensive archive. Well not really, but it's
-            a cool name. I hope you enjoy the tutorials, the anime
-            recommendations, and the short stories!
+            Misc. is short for miscellaneous. As in miscellaneous discussions
+            and posts. There are short stories, haikus, and various anime
+            discussions as well in addition to some posts that do not fit these
+            categories.
           </div>
-          <div className="has-text-weight-bold my-3 mb-6 ml-4">
+          {/* <div className="has-text-weight-bold my-3 mb-6 ml-4">
             Ways you can support me and sponsor my content:
           </div>
           <div>
@@ -26,18 +27,21 @@ const Footer = () => {
                 Checkout to my patreon
               </a>
             </div>
-            {/* <div><a className="button is-primary" href="#">Donate with paypal</a></div> */}
-          </div>
+            <div><a className="button is-primary" href="#">Donate with paypal</a></div>
+          </div> */}
           <div
             className={
-              "has-text-weight-bold my-3 mb-6 ml-4 " +
-              $theme.secondaryColorClass
+              "has-text-weight-bold my-6 ml-3 " + $theme.secondaryColorClass
             }
           >
             Join my discord server:
           </div>
           <div>
-            <a href="#" className={"button " + $theme.darkBtnClass}>
+            <a
+              href="https://discord.gg/TtqnKWqF"
+              target="_blank"
+              className={"button " + $theme.darkBtnClass}
+            >
               Discord server
             </a>
           </div>
@@ -57,7 +61,7 @@ const Footer = () => {
           >
             Navigate
           </h4>
-          <hr className="navbar-divider has-background-warning is-block" />
+          <hr className="navbar-divider has-background-link is-block" />
           <div>
             <li style="list-style-type: none;">
               <a className={"mb-3 button " + $theme.orangeBtnClass} href="/">
@@ -100,7 +104,7 @@ const Footer = () => {
         </div>
       </div>
       <div className={"has-text-centered " + $theme.secondaryColorClass}>
-        Copyright &copy; {new Date().getFullYear()} some rights reserved 💓
+        Copyright &copy; {new Date().getFullYear()} 💓
       </div>
     </footer>
   );

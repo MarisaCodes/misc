@@ -1,7 +1,7 @@
 import { persistentAtom } from "@nanostores/persistent";
 
 export const theme = persistentAtom(
-  "testTheme",
+  "theme",
   {
     colorClass: "astro-color",
     bgClass: "astro-background",

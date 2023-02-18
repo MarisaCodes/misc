@@ -55,10 +55,11 @@ const Navbar = () => {
           </a>
           <div className="navbar-item">
             <a
-              href="#"
+              href="https://discord.gg/TtqnKWqF"
+              target="_blank"
               className={"button is-aligned-self-center " + $theme.darkBtnClass}
             >
-              Join the Discod server
+              Join the Discord server
             </a>
           </div>
         </div>
