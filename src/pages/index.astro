@@ -51,22 +51,14 @@ animes = animes.sort((a, b) => {
   <meta name="author" content="misc" slot="head-slot" />
   <Home client:load>
     <Banner client:load />
-    <Message client:load header="Checkout anime posts">
+    <Message client:load header="Check out short stories">
       <Carousel client:load>
         {
-          animes.map((anime) => {
-            const { title, href, thumbnail, date } = anime.frontmatter;
-            const { Content } = anime;
-
+          stories.map(({ frontmatter, Content }) => {
+            const { title, date, href } = frontmatter;
             return (
               <CarouselCell>
-                <Card
-                  date={date}
-                  title={title}
-                  href={href}
-                  thumbnail={thumbnail}
-                  client:load
-                >
+                <Card date={date} title={title} href={href} client:load>
                   <Content />
                 </Card>
               </CarouselCell>
@@ -95,7 +87,32 @@ animes = animes.sort((a, b) => {
       </Carousel>
     </Message>
 
-    <Message client:load header="Checkout miscellaneous discussions">
+    <Message client:load header="Checkout anime posts">
+      <Carousel client:load>
+        {
+          animes.map((anime) => {
+            const { title, href, thumbnail, date } = anime.frontmatter;
+            const { Content } = anime;
+
+            return (
+              <CarouselCell>
+                <Card
+                  date={date}
+                  title={title}
+                  href={href}
+                  thumbnail={thumbnail}
+                  client:load
+                >
+                  <Content />
+                </Card>
+              </CarouselCell>
+            );
+          })
+        }
+      </Carousel>
+    </Message>
+
+    <Message client:load header="Check out miscellaneous discussions">
       <Carousel client:load>
         {
           miscPosts.map(({ frontmatter, Content }) => {
@@ -119,22 +136,6 @@ animes = animes.sort((a, b) => {
       </Carousel>
     </Message>
 
-    <Message client:load header="Checkout short stories">
-      <Carousel client:load>
-        {
-          stories.map(({ frontmatter, Content }) => {
-            const { title, date, href } = frontmatter;
-            return (
-              <CarouselCell>
-                <Card date={date} title={title} href={href} client:load>
-                  <Content />
-                </Card>
-              </CarouselCell>
-            );
-          })
-        }
-      </Carousel>
-    </Message>
     <!-- <div class="section">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi est maiores
       ullam accusamus voluptate iusto, soluta nostrum optio officia. Laborum
